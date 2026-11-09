@@ -11,6 +11,7 @@ import nodemailer from 'nodemailer';
 import Opportunity from './models/Opportunity.js';
 import Application from './models/Application.js';
 import User from './models/User.js';
+import initialOpportunities from './data/initialOpportunities.js';
 
 dotenv.config();
 const app = express();
@@ -84,5 +85,12 @@ app.patch('/api/applications/:id', async (req, res) => {
 
 const port = process.env.PORT || 5000;
 mongoose.connect(process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/launchpad')
-  .then(() => app.listen(port, () => console.log(`Launchpad API running on http://localhost:${port}`)))
+  .then(async () => {
+    const count = await Opportunity.countDocuments();
+    if (count === 0) {
+      await Opportunity.insertMany(initialOpportunities);
+      console.log(`Seeded ${initialOpportunities.length} initial opportunities`);
+    }
+    app.listen(port, () => console.log(`Launchpad API running on http://localhost:${port}`));
+  })
   .catch((error) => { console.error('MongoDB connection failed:', error.message); process.exit(1); });

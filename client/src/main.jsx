@@ -48,8 +48,9 @@ function App() {
   const loadApplications = async () => { try { setApplications(await request('/applications')); } catch { setApplications([]); } setPage('admin-apps'); };
 
   const logout = () => { setAuth(null); localStorage.removeItem('launchpad_token'); localStorage.removeItem('launchpad_user'); setPage('home'); setToast('Logged out'); };
+  const openAdmin = () => { if (auth?.role !== 'admin') { setAuth(null); localStorage.removeItem('launchpad_token'); localStorage.removeItem('launchpad_user'); } setPage('admin'); };
 
-  return <><Header page={page} setPage={setPage} loadApplications={loadApplications} auth={auth} onLogout={logout} />
+  return <><Header page={page} setPage={setPage} loadApplications={loadApplications} auth={auth} onAdminClick={openAdmin} onLogout={logout} />
     {page === 'home' && <Home opportunities={filtered} query={query} setQuery={setQuery} domain={domain} setDomain={setDomain} showFilters={showFilters} setShowFilters={setShowFilters} openDetails={openDetails} />}
     {page === 'details' && selected && <Details opportunity={selected} back={() => setPage('home')} onApply={() => setPage('apply')} />}
     {page === 'apply' && selected && <ApplicationForm opportunity={selected} back={() => setPage('details')} submit={submitApplication} />}
@@ -60,7 +61,7 @@ function App() {
   </>;
 }
 
-function Header({ page, setPage, loadApplications, auth, onLogout }) {
+function Header({ page, setPage, loadApplications, auth, onAdminClick, onLogout }) {
   const go = nextPage => setPage(nextPage);
   return <header className="header">
     <div className="nav container">
@@ -69,7 +70,7 @@ function Header({ page, setPage, loadApplications, auth, onLogout }) {
         <button className={page === 'home' ? 'active' : ''} onClick={() => go('home')}><span className="nav-icon"><LayoutDashboard size={15} /></span>Explore opportunities</button>
         <button className={page === 'admin' || page === 'admin-apps' ? 'active' : ''} onClick={() => go('admin')}><span className="nav-icon"><Building2 size={15} /></span>For employers</button>
       </nav>
-      <div className="nav-actions"><span className="nav-status"><span className="live-dot" /> Hiring now <span className="notification-badge">3</span></span><button className="admin-link" onClick={() => go('admin')}><span className="workspace-avatar">LP</span><span className="workspace-copy"><small>Workspace</small>Admin workspace</span><ArrowUpRight size={15} /></button>{auth && <button className="auth-switch" type="button" onClick={onLogout}>Log out</button>}</div>
+      <div className="nav-actions"><span className="nav-status"><span className="live-dot" /> Hiring now <span className="notification-badge">3</span></span><button className="admin-link" onClick={onAdminClick}><span className="workspace-avatar">LP</span><span className="workspace-copy"><small>Workspace</small>Admin workspace</span><ArrowUpRight size={15} /></button>{auth && <button className="auth-switch" type="button" onClick={onLogout}>Log out</button>}</div>
     </div>
   </header>
 }

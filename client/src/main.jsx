@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client';
 import { ArrowUpRight, BriefcaseBusiness, Building2, Check, ChevronDown, Clock3, ExternalLink, Filter, LayoutDashboard, MapPin, Pencil, Plus, Rocket, Search, Sparkles, Trash2, Users, X } from 'lucide-react';
 import './styles.css';
 
-const API = 'http://localhost:5000/api';
+const API = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 const fallback = [
   { _id: 'nova', title: 'Frontend Engineering Intern', company: 'Nova Labs', domain: 'Engineering', location: 'Bengaluru · Hybrid', experience: '0–1 years', type: 'Internship', featured: true, description: 'Build thoughtful product experiences with a small, ambitious team. You will work closely with design and backend engineers to ship polished features.', applicationLink: 'https://example.com/apply/nova' },
   { _id: 'orbit', title: 'Product Design Intern', company: 'Orbit Studio', domain: 'Design', location: 'Remote · India', experience: '0–1 years', type: 'Internship', featured: true, description: 'Help shape the future of collaboration software through research, prototyping, and high-fidelity interface design.', applicationLink: 'https://example.com/apply/orbit' },

@@ -49,25 +49,29 @@ function App() {
 
   const logout = () => { setAuth(null); localStorage.removeItem('launchpad_token'); localStorage.removeItem('launchpad_user'); setPage('home'); setToast('Logged out'); };
   const openAdmin = () => { if (auth?.role !== 'admin') { setAuth(null); localStorage.removeItem('launchpad_token'); localStorage.removeItem('launchpad_user'); } setPage('admin'); };
+  const openUserLogin = () => { setAuth(null); localStorage.removeItem('launchpad_token'); localStorage.removeItem('launchpad_user'); setPage('user-auth'); };
+  const completeAuth = session => { setAuth(session.user); localStorage.setItem('launchpad_token', session.token); localStorage.setItem('launchpad_user', JSON.stringify(session.user)); setPage(session.user.role === 'admin' ? 'admin' : 'home'); setToast('Authentication successful'); };
 
-  return <><Header page={page} setPage={setPage} loadApplications={loadApplications} auth={auth} onAdminClick={openAdmin} onLogout={logout} />
+  return <><Header page={page} setPage={setPage} loadApplications={loadApplications} auth={auth} onAdminClick={openAdmin} onUserLogin={openUserLogin} onLogout={logout} />
     {page === 'home' && <Home opportunities={filtered} query={query} setQuery={setQuery} domain={domain} setDomain={setDomain} showFilters={showFilters} setShowFilters={setShowFilters} openDetails={openDetails} />}
     {page === 'details' && selected && <Details opportunity={selected} back={() => setPage('home')} onApply={() => setPage('apply')} />}
     {page === 'apply' && selected && <ApplicationForm opportunity={selected} back={() => setPage('details')} submit={submitApplication} />}
-    {page === 'admin' && (auth?.role === 'admin' ? <Admin opportunities={opportunities} add={() => { setEditing(null); setFormOpen(true); }} edit={(x) => { setEditing(x); setFormOpen(true); }} remove={removeOpportunity} apps={loadApplications} /> : <AuthForm admin onAuth={(session) => { setAuth(session.user); localStorage.setItem('launchpad_token', session.token); localStorage.setItem('launchpad_user', JSON.stringify(session.user)); setPage(session.user.role === 'admin' ? 'admin' : 'home'); setToast('Authentication successful'); }} />)}
+    {page === 'admin' && (auth?.role === 'admin' ? <Admin opportunities={opportunities} add={() => { setEditing(null); setFormOpen(true); }} edit={(x) => { setEditing(x); setFormOpen(true); }} remove={removeOpportunity} apps={loadApplications} /> : <AuthForm admin onAuth={completeAuth} />)}
+    {page === 'user-auth' && <AuthForm onAuth={completeAuth} />}
     {page === 'admin-apps' && <Applications applications={applications} back={() => setPage('admin')} />}
     {formOpen && <OpportunityForm initial={editing} close={() => setFormOpen(false)} save={saveOpportunity} />}
     {toast && <div className="toast"><Check size={18} /> {toast}</div>}
   </>;
 }
 
-function Header({ page, setPage, loadApplications, auth, onAdminClick, onLogout }) {
+function Header({ page, setPage, loadApplications, auth, onAdminClick, onUserLogin, onLogout }) {
   const go = nextPage => setPage(nextPage);
   return <header className="header">
     <div className="nav container">
       <button className="brand" onClick={() => go('home')}><span className="brand-mark"><Rocket size={16} strokeWidth={2.4} /></span><span>LaunchPad<span className="dot">.</span></span></button>
       <nav className="desktop-nav" aria-label="Primary navigation">
         <button className={page === 'home' ? 'active' : ''} onClick={() => go('home')}><span className="nav-icon"><LayoutDashboard size={15} /></span>Explore opportunities</button>
+        <button className={page === 'user-auth' ? 'active' : ''} onClick={onUserLogin}><span className="nav-icon"><Users size={15} /></span>User login</button>
         <button className={page === 'admin' || page === 'admin-apps' ? 'active' : ''} onClick={() => go('admin')}><span className="nav-icon"><Building2 size={15} /></span>For employers</button>
       </nav>
       <div className="nav-actions"><span className="nav-status"><span className="live-dot" /> Hiring now <span className="notification-badge">3</span></span><button className="admin-link" onClick={onAdminClick}><span className="workspace-avatar">LP</span><span className="workspace-copy"><small>Workspace</small>Admin workspace</span><ArrowUpRight size={15} /></button>{auth && <button className="auth-switch" type="button" onClick={onLogout}>Log out</button>}</div>

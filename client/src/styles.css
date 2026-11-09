@@ -62,7 +62,7 @@ nav button:hover{transform:translateY(-1px)}
 @media(max-width:620px){.header{height:74px}.brand{font-size:17px}.brand-mark{width:28px;height:28px}.brand:after{left:38px;top:32px;font-size:7px}.desktop-nav{margin-right:6px}.desktop-nav button{padding:8px 7px;font-size:10px;gap:5px}.desktop-nav .nav-icon{display:none}.workspace-copy{display:none}.admin-link{gap:5px}.workspace-avatar{width:25px;height:25px}}
 @media(max-width:800px){.hero{padding-top:48px}}
 @media(max-width:560px){.hero{padding-top:40px}}
-.auth-switch{width:100%;margin-top:16px;color:var(--green);font-size:12px;text-decoration:underline;text-underline-offset:3px}.auth-error{color:#b55243;background:#fff0ed;border:1px solid #f1c9c1;padding:10px 12px;font-size:12px;margin:0 0 16px}
+.auth-switch{width:100%;margin-top:16px;color:var(--green);font-size:12px;text-decoration:underline;text-underline-offset:3px}.auth-error{color:#b55243;background:#fff0ed;border:1px solid #f1c9c1;padding:10px 12px;font-size:12px;margin:0 0 16px}.auth-success{color:#2c685b;background:#eaf6ef;border:1px solid #bfe1cc;padding:10px 12px;font-size:12px;margin:0 0 16px}
 
 /* Opportunity cards: tactile hover treatment with a quiet editorial glow. */
 .card{position:relative;overflow:hidden;isolation:isolate;border-color:rgba(71,121,108,.18);transition:transform .32s cubic-bezier(.2,.8,.2,1),box-shadow .32s ease,border-color .32s ease}

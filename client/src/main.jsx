@@ -68,7 +68,7 @@ function Header({ page, setPage, loadApplications, auth, onAdminClick, onUserLog
   const go = nextPage => setPage(nextPage);
   return <header className="header">
     <div className="nav container">
-      <button className="brand" onClick={() => go('home')}><span className="brand-mark"><Rocket size={16} strokeWidth={2.4} /></span><span>LaunchPad<span className="dot">.</span></span></button>
+      <button className="brand" onClick={() => go('home')}><span className="project-credit">Project by Keyur</span><span className="brand-mark"><Rocket size={16} strokeWidth={2.4} /></span><span>LaunchPad<span className="dot">.</span></span></button>
       <nav className="desktop-nav" aria-label="Primary navigation">
         <button className={page === 'home' ? 'active' : ''} onClick={() => go('home')}><span className="nav-icon"><LayoutDashboard size={15} /></span>Explore opportunities</button>
         <button className={page === 'user-auth' ? 'active' : ''} onClick={onUserLogin}><span className="nav-icon"><Users size={15} /></span>User login</button>

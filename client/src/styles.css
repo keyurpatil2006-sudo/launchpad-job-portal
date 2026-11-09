@@ -98,3 +98,5 @@ nav button:hover{transform:translateY(-1px)}
 .apply-card .external{margin-top:12px;padding-top:12px;border-top:1px solid rgba(220,235,226,.18);text-decoration:none;letter-spacing:.1px;font-size:0;transition:color .2s ease,transform .2s ease}.apply-card .external:before{content:'View original opportunity';font-size:11px}.apply-card .external svg{transition:transform .2s ease}.apply-card .external:hover{color:#fff;transform:none}.apply-card .external:hover svg{transform:translate(2px,-2px)}
 .sticky-apply{top:calc(100vh - 420px)}
 @media(max-width:800px){.sticky-apply{top:auto}}
+.brand{gap:10px}.project-credit{position:absolute;right:calc(100% + 14px);top:50%;transform:translateY(-50%);white-space:nowrap;color:#82958d;font-size:9px;font-weight:700;letter-spacing:1.15px;text-transform:uppercase}.project-credit:after{content:'';display:inline-block;width:22px;height:1px;margin-left:9px;vertical-align:middle;background:linear-gradient(90deg,#b9cec4,transparent)}
+@media(max-width:800px){.project-credit{display:none}}

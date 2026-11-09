@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Launchpad — internship & job opportunities
 
 A small MERN platform for discovering opportunities and collecting applications.
@@ -41,3 +42,7 @@ The client runs at `http://localhost:5173` and the API at `http://localhost:5000
 - Application inbox backed by MongoDB
 
 The client includes a small fallback dataset so the browsing experience remains visible while the API or database is unavailable. Writes are sent to the API whenever it is running.
+=======
+# launchpad-job-portal
+Internship and job opportunities platform
+>>>>>>> 4d25e1a62625d44b3b455e8866365d61824a8773

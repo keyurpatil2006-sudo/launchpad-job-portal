@@ -78,7 +78,7 @@ app.get('/api/applications', requireAuth, requireAdmin, async (_req, res) => {
   catch (error) { res.status(500).json({ message: error.message }); }
 });
 
-app.patch('/api/applications/:id', async (req, res) => {
+app.patch('/api/applications/:id', requireAuth, requireAdmin, async (req, res) => {
   try { res.json(await Application.findByIdAndUpdate(req.params.id, { status: req.body.status }, { new: true }).populate('opportunity', 'title company')); }
   catch (error) { res.status(400).json({ message: error.message }); }
 });

@@ -54,15 +54,93 @@ nav button:hover{transform:translateY(-1px)}
 .admin-link{padding:6px 0;gap:8px}.workspace-avatar{width:27px;height:27px;border-radius:9px;display:grid;place-items:center;background:var(--ink);color:#dcebe2;font-size:9px;font-weight:700;letter-spacing:.4px}.workspace-copy{display:flex;flex-direction:column;align-items:flex-start;gap:1px;line-height:1.1;font-size:12px}.workspace-copy small{font-size:8px;text-transform:uppercase;letter-spacing:1px;color:#91a19a}.mobile-nav{display:none}
 .desktop-nav button{position:relative}.desktop-nav button.active:after{content:'';position:absolute;left:50%;bottom:3px;width:20px;height:2px;border-radius:99px;background:var(--coral);transform:translateX(-50%);box-shadow:0 0 8px rgba(71,121,108,.3);animation:navIndicator .3s ease both}
 .admin-page .admin-head{position:relative}.admin-page .admin-head:not(.compact):before,.admin-page .admin-head.compact:before{display:block;position:absolute;left:0;top:-26px;color:#8a9a93;font-size:10px;letter-spacing:.3px}.admin-page .admin-head:not(.compact):before{content:'LaunchPad  /  Employer workspace'}.admin-page .admin-head.compact:before{content:'LaunchPad  /  Employer workspace  /  Applications'}.admin-page .admin-head:before{font-weight:600}.admin-page .admin-head:before::first-letter{color:var(--green)}
-@media(max-width:800px){.header{height:70px}.brand:after{display:none}.desktop-nav,.nav-status{display:none}.mobile-nav{position:absolute;left:18px;right:18px;top:78px;background:rgba(247,250,247,.98);border:1px solid rgba(71,121,108,.16);border-radius:16px;padding:10px;box-shadow:0 18px 40px rgba(35,59,54,.14);z-index:10}.menu-open .mobile-nav{display:block;animation:navDrop .25s ease both}.mobile-nav-label{padding:9px 11px 7px;text-transform:uppercase;letter-spacing:1.4px;font-size:9px;color:#91a19a;font-weight:700}.mobile-nav button{width:100%;display:flex;align-items:center;gap:10px;padding:13px 11px;border-radius:10px;color:var(--muted);font-size:13px;text-align:left}.mobile-nav button svg:last-child{margin-left:auto}.mobile-nav button.active{color:var(--ink);background:var(--lavender);font-weight:700}.mobile-nav button.active svg:last-child{color:var(--green)}.mobile-nav-footer{display:flex;gap:8px;align-items:center;border-top:1px solid var(--line);margin-top:8px;padding:13px 11px 5px;color:#82958d;font-size:10px}.mobile-menu{width:38px;height:38px;border:1px solid rgba(71,121,108,.15);border-radius:10px;display:grid;place-items:center;background:rgba(255,255,255,.6)}.mobile-menu svg{width:19px}.nav-actions{gap:10px}}
-@keyframes navDrop{from{opacity:0;transform:translateY(-8px) scale(.98)}to{opacity:1;transform:none}}
-@keyframes navIndicator{from{opacity:0;transform:translateX(-50%) scaleX(.4)}to{opacity:1;transform:translateX(-50%) scaleX(1)}}
+/* Responsive Navigation & Breakpoints */
+@media(max-width:1100px){
+  .desktop-nav{display:flex;margin-left:auto;margin-right:12px;gap:2px;padding:3px}
+  .desktop-nav button{padding:9px 10px;font-size:11px}
+  .nav-status{display:none}
+  .admin-link{display:flex}
+  .nav{justify-content:space-between}
+}
 
-@media(max-width:1100px){.desktop-nav{display:flex;margin-left:auto;margin-right:12px;gap:2px;padding:3px}.desktop-nav button{padding:9px 10px;font-size:11px}.nav-status,.mobile-menu{display:none}.admin-link{display:flex}.nav{justify-content:space-between}}
-@media(max-width:620px){.header{height:74px}.brand{font-size:17px}.brand-mark{width:28px;height:28px}.brand:after{left:38px;top:32px;font-size:7px}.desktop-nav{margin-right:6px}.desktop-nav button{padding:8px 7px;font-size:10px;gap:5px}.desktop-nav .nav-icon{display:none}.workspace-copy{display:none}.admin-link{gap:5px}.workspace-avatar{width:25px;height:25px}}
+@media(max-width:860px){
+  .header{height:72px}
+  .desktop-nav{display:none!important}
+  .nav-status{display:none!important}
+  .admin-link{display:none!important}
+  .mobile-menu{display:grid!important}
+  .brand:after{display:none}
+  .nav-actions{gap:8px}
+  
+  .mobile-nav{
+    position:absolute;
+    left:16px;
+    right:16px;
+    top:74px;
+    background:rgba(247,250,247,.98);
+    backdrop-filter:blur(18px);
+    border:1px solid rgba(71,121,108,.18);
+    border-radius:16px;
+    padding:12px;
+    box-shadow:0 18px 45px rgba(35,59,54,.18);
+    z-index:20;
+    display:none;
+  }
+  .menu-open .mobile-nav{
+    display:block;
+    animation:navDrop .25s cubic-bezier(.2,.8,.2,1) both;
+  }
+  .mobile-nav-label{
+    padding:6px 12px 8px;
+    text-transform:uppercase;
+    letter-spacing:1.4px;
+    font-size:10px;
+    color:#91a19a;
+    font-weight:700;
+  }
+  .mobile-nav button{
+    width:100%;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:13px 14px;
+    border-radius:10px;
+    color:var(--ink);
+    font-size:14px;
+    text-align:left;
+    font-weight:500;
+    transition:background-color .2s ease;
+  }
+  .mobile-nav button:hover, .mobile-nav button:active{
+    background:rgba(199,220,209,.4);
+  }
+  .mobile-nav button svg:last-child{margin-left:auto;color:var(--muted)}
+  .mobile-nav button.active{
+    color:var(--ink);
+    background:var(--lavender);
+    font-weight:700;
+  }
+  .mobile-nav button.active svg:last-child{color:var(--green)}
+  .mobile-nav-footer{
+    display:flex;
+    gap:8px;
+    align-items:center;
+    border-top:1px solid var(--line);
+    margin-top:10px;
+    padding:12px 12px 4px;
+    color:#82958d;
+    font-size:11px;
+  }
+}
+
 @media(max-width:800px){.hero{padding-top:48px}}
 @media(max-width:560px){.hero{padding-top:40px}}
-.auth-switch{width:100%;margin-top:16px;color:var(--green);font-size:12px;text-decoration:underline;text-underline-offset:3px}.auth-error{color:#b55243;background:#fff0ed;border:1px solid #f1c9c1;padding:10px 12px;font-size:12px;margin:0 0 16px}.auth-success{color:#2c685b;background:#eaf6ef;border:1px solid #bfe1cc;padding:10px 12px;font-size:12px;margin:0 0 16px}
+.mobile-logout{color:#b55243!important;border:1px dashed rgba(181,82,67,.3)!important;margin-top:6px;justify-content:center!important;font-weight:600!important}
+.desktop-auth-btn{width:auto;margin:0;white-space:nowrap}
+@media(max-width:800px){
+  .desktop-auth-btn{display:none}
+}
+
 
 /* Opportunity cards: tactile hover treatment with a quiet editorial glow. */
 .card{position:relative;overflow:hidden;isolation:isolate;border-color:rgba(71,121,108,.18);transition:transform .32s cubic-bezier(.2,.8,.2,1),box-shadow .32s ease,border-color .32s ease}

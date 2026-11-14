@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { createRoot } from 'react-dom/client';
-import { ArrowUpRight, BriefcaseBusiness, Building2, CalendarDays, Check, CheckCircle2, ChevronDown, Clock3, ExternalLink, Filter, LayoutDashboard, MapPin, Pencil, Plus, Rocket, Search, Share2, Sparkles, Trash2, Users, UsersRound, X } from 'lucide-react';
+import { ArrowUpRight, BriefcaseBusiness, Building2, CalendarDays, Check, CheckCircle2, ChevronDown, Clock3, ExternalLink, Filter, LayoutDashboard, MapPin, Menu, Pencil, Plus, Rocket, Search, Share2, Sparkles, Trash2, Users, UsersRound, X } from 'lucide-react';
 import './styles.css';
 
 const API = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
@@ -65,8 +65,12 @@ function App() {
 }
 
 function Header({ page, setPage, loadApplications, auth, onAdminClick, onUserLogin, onLogout }) {
-  const go = nextPage => setPage(nextPage);
-  return <header className="header">
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const go = nextPage => {
+    setPage(nextPage);
+    setMobileMenuOpen(false);
+  };
+  return <header className={`header ${mobileMenuOpen ? 'menu-open' : ''}`}>
     <div className="nav container">
       <button className="brand" onClick={() => go('home')}><span className="project-credit">Project by Keyur</span><span className="brand-mark"><Rocket size={16} strokeWidth={2.4} /></span><span>LaunchPad<span className="dot">.</span></span></button>
       <nav className="desktop-nav" aria-label="Primary navigation">
@@ -74,8 +78,37 @@ function Header({ page, setPage, loadApplications, auth, onAdminClick, onUserLog
         <button className={page === 'user-auth' ? 'active' : ''} onClick={onUserLogin}><span className="nav-icon"><Users size={15} /></span>User login</button>
         <button className={page === 'admin' || page === 'admin-apps' ? 'active' : ''} onClick={() => go('admin')}><span className="nav-icon"><Building2 size={15} /></span>For employers</button>
       </nav>
-      <div className="nav-actions"><span className="nav-status"><span className="live-dot" /> Hiring now <span className="notification-badge">3</span></span><button className="admin-link" onClick={onAdminClick}><span className="workspace-avatar">LP</span><span className="workspace-copy"><small>Workspace</small>Admin workspace</span><ArrowUpRight size={15} /></button>{auth && <button className="auth-switch" type="button" onClick={onLogout}>Log out</button>}</div>
+      <div className="nav-actions">
+        <span className="nav-status"><span className="live-dot" /> Hiring now <span className="notification-badge">3</span></span>
+        <button className="admin-link" onClick={onAdminClick}><span className="workspace-avatar">LP</span><span className="workspace-copy"><small>Workspace</small>Admin workspace</span><ArrowUpRight size={15} /></button>
+        {auth && <button className="auth-switch desktop-auth-btn" type="button" onClick={onLogout}>Log out</button>}
+        <button className="mobile-menu" aria-label="Toggle navigation menu" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+          {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+        </button>
+      </div>
     </div>
+    {mobileMenuOpen && (
+      <div className="mobile-nav">
+        <div className="mobile-nav-label">Navigation</div>
+        <button className={page === 'home' ? 'active' : ''} onClick={() => go('home')}>
+          <LayoutDashboard size={16} /> Explore opportunities <ArrowUpRight size={14} />
+        </button>
+        <button className={page === 'user-auth' ? 'active' : ''} onClick={() => { onUserLogin(); setMobileMenuOpen(false); }}>
+          <Users size={16} /> User login <ArrowUpRight size={14} />
+        </button>
+        <button className={page === 'admin' || page === 'admin-apps' ? 'active' : ''} onClick={() => { onAdminClick(); setMobileMenuOpen(false); }}>
+          <Building2 size={16} /> For employers / Admin <ArrowUpRight size={14} />
+        </button>
+        {auth && (
+          <button className="mobile-logout" onClick={() => { onLogout(); setMobileMenuOpen(false); }}>
+            Log out ({auth.email || 'Admin'})
+          </button>
+        )}
+        <div className="mobile-nav-footer">
+          <span className="live-dot" /> <span>Hiring now · 20+ open opportunities</span>
+        </div>
+      </div>
+    )}
   </header>
 }
 

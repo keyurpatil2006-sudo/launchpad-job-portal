@@ -1,0 +1,1380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>LaunchPad — Project Report</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Lexend+Deca:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --green:      #2f6a5c;
+    --green-light:#e9f4f1;
+    --green-mid:  #c5dfd8;
+    --coral:      #d4634d;
+    --ink:        #1e2e2a;
+    --muted:      #6b7e79;
+    --line:       #d6e3de;
+    --paper:      #f6faf8;
+    --white:      #ffffff;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Lexend', sans-serif;
+    font-size: 10.5pt;
+    color: var(--ink);
+    background: var(--white);
+    line-height: 1.65;
+  }
+
+  /* ── COVER PAGE ─────────────────────────── */
+  .cover {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0;
+    page-break-after: always;
+    background: var(--white);
+    position: relative;
+  }
+
+  .cover-top-bar {
+    background: var(--green);
+    height: 10px;
+    width: 100%;
+  }
+
+  .cover-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 70px 80px 50px;
+  }
+
+  .cover-eyebrow {
+    font-family: 'Lexend Deca', sans-serif;
+    font-size: 9pt;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    color: var(--green);
+    font-weight: 600;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .cover-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 28px;
+    height: 1.5px;
+    background: var(--coral);
+  }
+
+  .cover-title {
+    font-family: 'Merriweather', serif;
+    font-size: 46pt;
+    font-weight: 700;
+    line-height: 1.08;
+    color: var(--ink);
+    letter-spacing: -1px;
+    margin-bottom: 10px;
+  }
+
+  .cover-title span {
+    color: var(--green);
+    font-style: italic;
+  }
+
+  .cover-dot {
+    color: var(--coral);
+  }
+
+  .cover-subtitle {
+    font-family: 'Merriweather', serif;
+    font-size: 13pt;
+    color: var(--muted);
+    font-weight: 300;
+    font-style: italic;
+    margin-top: 16px;
+    margin-bottom: 50px;
+    max-width: 480px;
+    line-height: 1.6;
+  }
+
+  .cover-divider {
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--coral), var(--green));
+    border-radius: 2px;
+    margin-bottom: 50px;
+  }
+
+  .cover-meta-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px 50px;
+    margin-top: 20px;
+  }
+
+  .cover-meta-item label {
+    display: block;
+    font-size: 7.5pt;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--muted);
+    font-weight: 600;
+    margin-bottom: 4px;
+    font-family: 'Lexend Deca', sans-serif;
+  }
+
+  .cover-meta-item span {
+    font-size: 10.5pt;
+    font-weight: 500;
+    color: var(--ink);
+  }
+
+  .cover-bottom {
+    padding: 30px 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid var(--line);
+  }
+
+  .cover-org {
+    font-family: 'Lexend Deca', sans-serif;
+    font-size: 9pt;
+    color: var(--muted);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+  }
+
+  .cover-logo-mark {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: var(--green);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-family: 'Lexend', sans-serif;
+    font-weight: 700;
+    font-size: 14pt;
+  }
+
+  /* ── PAGE LAYOUT ─────────────────────────── */
+  .page {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 60px 72px;
+    page-break-after: always;
+  }
+
+  .page:last-child {
+    page-break-after: auto;
+  }
+
+  /* ── SECTION HEADERS ─────────────────────── */
+  .section-label {
+    font-family: 'Lexend Deca', sans-serif;
+    font-size: 7.5pt;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--green);
+    font-weight: 600;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--line);
+  }
+
+  .section-num {
+    color: var(--coral);
+    margin-right: 4px;
+  }
+
+  h1.section-title {
+    font-family: 'Merriweather', serif;
+    font-size: 26pt;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.15;
+    letter-spacing: -0.5px;
+    margin-bottom: 24px;
+  }
+
+  h1.section-title em {
+    color: var(--green);
+    font-style: italic;
+    font-weight: 400;
+  }
+
+  h2.subsection {
+    font-family: 'Merriweather', serif;
+    font-size: 14pt;
+    font-weight: 700;
+    color: var(--ink);
+    margin: 32px 0 12px;
+    line-height: 1.3;
+  }
+
+  h3.mini {
+    font-family: 'Lexend', sans-serif;
+    font-size: 10pt;
+    font-weight: 600;
+    color: var(--green);
+    margin: 20px 0 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  /* ── BODY TEXT ───────────────────────────── */
+  p {
+    font-family: 'Merriweather', serif;
+    font-size: 10pt;
+    line-height: 1.8;
+    color: #3a4e49;
+    margin-bottom: 14px;
+    font-weight: 300;
+  }
+
+  p strong {
+    font-weight: 700;
+    color: var(--ink);
+    font-family: 'Lexend', sans-serif;
+    font-size: 9.5pt;
+  }
+
+  /* ── FEATURE CARDS ───────────────────────── */
+  .feature-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin: 20px 0;
+  }
+
+  .feature-card {
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 18px 20px;
+    background: var(--paper);
+  }
+
+  .feature-card-icon {
+    font-size: 18pt;
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .feature-card h4 {
+    font-family: 'Lexend', sans-serif;
+    font-size: 10pt;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+
+  .feature-card p {
+    font-size: 9pt;
+    margin: 0;
+    color: var(--muted);
+    font-family: 'Lexend', sans-serif;
+    font-weight: 400;
+    line-height: 1.55;
+  }
+
+  /* ── TECH STACK TABLE ────────────────────── */
+  .tech-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-family: 'Lexend', sans-serif;
+    font-size: 9.5pt;
+  }
+
+  .tech-table thead th {
+    background: var(--green);
+    color: white;
+    padding: 10px 16px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 8.5pt;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+  }
+
+  .tech-table thead th:first-child { border-radius: 8px 0 0 0; }
+  .tech-table thead th:last-child  { border-radius: 0 8px 0 0; }
+
+  .tech-table tbody tr:nth-child(even) { background: var(--paper); }
+  .tech-table tbody tr:nth-child(odd)  { background: var(--white); }
+
+  .tech-table tbody td {
+    padding: 9px 16px;
+    border-bottom: 1px solid var(--line);
+    color: var(--ink);
+    vertical-align: top;
+  }
+
+  .tech-table tbody td:first-child {
+    font-weight: 600;
+    color: var(--green);
+    white-space: nowrap;
+  }
+
+  /* ── API TABLE ───────────────────────────── */
+  .api-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 14px 0 24px;
+    font-family: 'Lexend Deca', sans-serif;
+    font-size: 8.5pt;
+  }
+
+  .api-table thead th {
+    background: var(--ink);
+    color: white;
+    padding: 8px 12px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 8pt;
+    letter-spacing: 0.5px;
+  }
+
+  .api-table tbody td {
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+  }
+
+  .api-table tbody tr:hover { background: var(--paper); }
+
+  .method {
+    display: inline-block;
+    padding: 2px 7px;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 7.5pt;
+    font-family: 'Lexend Deca', sans-serif;
+  }
+  .method.get    { background: #dff0da; color: #2a6e1f; }
+  .method.post   { background: #ddeeff; color: #1a4f8a; }
+  .method.put    { background: #fff3d6; color: #8a5a00; }
+  .method.delete { background: #fde8e8; color: #8a1f1f; }
+
+  .code {
+    font-family: 'Lexend Deca', monospace;
+    font-size: 8.5pt;
+    background: var(--green-light);
+    color: var(--green);
+    padding: 1px 5px;
+    border-radius: 3px;
+  }
+
+  /* ── ARCHITECTURE DIAGRAM ────────────────── */
+  .arch-box {
+    border: 1.5px solid var(--line);
+    border-radius: 12px;
+    padding: 28px 32px;
+    margin: 20px 0;
+    background: var(--paper);
+    text-align: center;
+  }
+
+  .arch-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    margin: 6px 0;
+  }
+
+  .arch-node {
+    background: var(--white);
+    border: 1.5px solid var(--green-mid);
+    border-radius: 10px;
+    padding: 12px 22px;
+    text-align: center;
+    min-width: 150px;
+  }
+
+  .arch-node .node-title {
+    font-family: 'Lexend', sans-serif;
+    font-weight: 700;
+    font-size: 10pt;
+    color: var(--ink);
+    display: block;
+  }
+
+  .arch-node .node-sub {
+    font-family: 'Lexend Deca', sans-serif;
+    font-size: 7.5pt;
+    color: var(--muted);
+    margin-top: 2px;
+    display: block;
+  }
+
+  .arch-node.highlight {
+    background: var(--green);
+    border-color: var(--green);
+  }
+
+  .arch-node.highlight .node-title,
+  .arch-node.highlight .node-sub { color: white; }
+
+  .arch-arrow {
+    font-size: 14pt;
+    color: var(--muted);
+    padding: 0 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1px;
+  }
+
+  .arch-arrow small {
+    font-family: 'Lexend Deca', sans-serif;
+    font-size: 7pt;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  /* ── STEP LIST ───────────────────────────── */
+  .step-list { margin: 16px 0; }
+
+  .step-item {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    margin-bottom: 16px;
+  }
+
+  .step-num {
+    min-width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--green);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Lexend', sans-serif;
+    font-weight: 700;
+    font-size: 9.5pt;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .step-content h4 {
+    font-family: 'Lexend', sans-serif;
+    font-weight: 600;
+    font-size: 10pt;
+    color: var(--ink);
+    margin-bottom: 3px;
+  }
+
+  .step-content p {
+    font-family: 'Lexend Deca', sans-serif;
+    font-size: 9pt;
+    color: var(--muted);
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  /* ── SCREENSHOT PLACEHOLDER ──────────────── */
+  .screenshot-placeholder {
+    border: 2px dashed var(--green-mid);
+    border-radius: 12px;
+    background: var(--paper);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: var(--muted);
+    page-break-inside: avoid;
+  }
+
+  .screenshot-placeholder .ph-icon {
+    font-size: 28pt;
+    opacity: 0.4;
+  }
+
+  .screenshot-placeholder .ph-label {
+    font-family: 'Lexend Deca', sans-serif;
+    font-size: 9pt;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: var(--green);
+  }
+
+  .screenshot-placeholder .ph-desc {
+    font-family: 'Merriweather', serif;
+    font-size: 8.5pt;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  .ph-sm  { height: 160px; margin: 16px 0; }
+  .ph-md  { height: 240px; margin: 20px 0; }
+  .ph-lg  { height: 320px; margin: 24px 0; }
+
+  /* ── ENV VAR BLOCK ───────────────────────── */
+  .env-block {
+    background: #1e2e2a;
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin: 16px 0;
+    font-family: 'Lexend Deca', monospace;
+    font-size: 8.5pt;
+    line-height: 1.8;
+    color: #c5dfd8;
+  }
+
+  .env-block .env-comment { color: #5a7a71; }
+  .env-block .env-key     { color: #9ccfbc; }
+  .env-block .env-val     { color: #e8c68a; }
+
+  /* ── CALLOUT BOXES ───────────────────────── */
+  .callout {
+    border-left: 4px solid var(--green);
+    background: var(--green-light);
+    border-radius: 0 8px 8px 0;
+    padding: 14px 18px;
+    margin: 16px 0;
+  }
+
+  .callout.warn {
+    border-color: var(--coral);
+    background: #fdf0ed;
+  }
+
+  .callout p {
+    font-family: 'Lexend', sans-serif;
+    font-size: 9.5pt;
+    margin: 0;
+    color: var(--ink);
+    font-weight: 400;
+    line-height: 1.6;
+  }
+
+  /* ── FUTURE IMPROVEMENTS ─────────────────── */
+  .checklist { margin: 14px 0; }
+
+  .checklist-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 7px 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .checklist-item:last-child { border-bottom: none; }
+
+  .check-box {
+    width: 16px;
+    height: 16px;
+    border: 2px solid var(--green-mid);
+    border-radius: 4px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .checklist-item span {
+    font-family: 'Lexend', sans-serif;
+    font-size: 9.5pt;
+    color: var(--ink);
+    line-height: 1.5;
+  }
+
+  /* ── DEPLOYMENT TABLE ────────────────────── */
+  .deploy-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 14px 0;
+    font-size: 9pt;
+    font-family: 'Lexend', sans-serif;
+  }
+
+  .deploy-table td {
+    padding: 9px 14px;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+  }
+
+  .deploy-table td:first-child {
+    color: var(--muted);
+    font-weight: 500;
+    width: 38%;
+    font-size: 8.5pt;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .deploy-table td:last-child {
+    color: var(--ink);
+    font-weight: 400;
+  }
+
+  .deploy-section-head {
+    background: var(--green-light);
+    padding: 8px 14px;
+    font-family: 'Lexend', sans-serif;
+    font-size: 9pt;
+    font-weight: 700;
+    color: var(--green);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    border-radius: 6px 6px 0 0;
+  }
+
+  /* ── FOLDER TREE ─────────────────────────── */
+  .tree {
+    background: #1e2e2a;
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin: 16px 0;
+    font-family: 'Lexend Deca', monospace;
+    font-size: 8.5pt;
+    line-height: 1.9;
+    color: #c5dfd8;
+  }
+
+  .tree .dir  { color: #9ccfbc; font-weight: 600; }
+  .tree .file { color: #c5dfd8; }
+  .tree .note { color: #5a7a71; }
+
+  /* ── PAGE HEADER / FOOTER ────────────────── */
+  .page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 12px;
+    margin-bottom: 36px;
+  }
+
+  .page-header .doc-title {
+    font-family: 'Lexend Deca', sans-serif;
+    font-size: 8pt;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    font-weight: 500;
+  }
+
+  .page-header .page-num {
+    font-family: 'Lexend Deca', sans-serif;
+    font-size: 8pt;
+    color: var(--muted);
+  }
+
+  .page-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid var(--line);
+    padding-top: 14px;
+    margin-top: 36px;
+  }
+
+  .page-footer span {
+    font-family: 'Lexend Deca', sans-serif;
+    font-size: 7.5pt;
+    color: var(--muted);
+    letter-spacing: 0.5px;
+  }
+
+  /* ── PRINT ───────────────────────────────── */
+  @page {
+    size: A4;
+    margin: 0;
+  }
+
+  @media print {
+    body { background: white; }
+    .page { padding: 55px 68px; }
+    .cover { page-break-after: always; }
+    h1, h2, h3 { page-break-after: avoid; }
+    .feature-grid, .arch-box, .screenshot-placeholder { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     COVER PAGE
+     ══════════════════════════════════════════ -->
+<div class="cover">
+  <div class="cover-top-bar"></div>
+
+  <div class="cover-body">
+    <div class="cover-eyebrow">Project Report &mdash; ATG Technologies</div>
+
+    <div class="cover-title">
+      LaunchPad<span class="cover-dot">.</span><br/>
+      <span>Job Portal</span>
+    </div>
+
+    <div class="cover-subtitle">
+      A focused platform for discovering internships and early-career
+      opportunities, built with the MERN stack.
+    </div>
+
+    <div class="cover-divider"></div>
+
+    <div class="cover-meta-grid">
+      <div class="cover-meta-item">
+        <label>Developed By</label>
+        <span>Keyur Patil</span>
+      </div>
+      <div class="cover-meta-item">
+        <label>Organisation</label>
+        <span>ATG Technologies</span>
+      </div>
+      <div class="cover-meta-item">
+        <label>Technology Stack</label>
+        <span>MERN (MongoDB, Express, React, Node.js)</span>
+      </div>
+      <div class="cover-meta-item">
+        <label>Deployment</label>
+        <span>Render (Frontend + Backend) &middot; MongoDB Atlas</span>
+      </div>
+      <div class="cover-meta-item">
+        <label>Repository</label>
+        <span>github.com/keyurpatil2006-sudo/launchpad-job-portal</span>
+      </div>
+      <div class="cover-meta-item">
+        <label>Report Date</label>
+        <span>November 2026</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="cover-bottom">
+    <span class="cover-org">ATG Technologies &mdash; Internship Project</span>
+    <div class="cover-logo-mark">LP</div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     PAGE 2 — PROJECT OVERVIEW & OBJECTIVES
+     ══════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <span class="doc-title">LaunchPad &mdash; Project Report</span>
+    <span class="page-num">Page 2</span>
+  </div>
+
+  <div class="section-label"><span class="section-num">01</span> Project Overview</div>
+  <h1 class="section-title">What is<br/><em>LaunchPad?</em></h1>
+
+  <p>
+    <strong>LaunchPad</strong> is a full-stack internship and job opportunity platform built to connect
+    early-career candidates with meaningful roles. The platform presents a curated collection of
+    internships and full-time positions across Engineering, Design, Marketing, Data &amp; Analytics,
+    and Content domains.
+  </p>
+  <p>
+    Candidates can search, filter, and explore role detail pages with editorial-style content — including
+    company stories, 30-day onboarding timelines, learning outcomes, and culture values — before
+    submitting a guided multi-step application. Employers and administrators access a protected
+    workspace where they can create, edit, and delete listings, and review all incoming applications.
+  </p>
+
+  <h2 class="subsection">Project Objectives</h2>
+
+  <div class="feature-grid">
+    <div class="feature-card">
+      <span class="feature-card-icon">🎯</span>
+      <h4>Opportunity Discovery</h4>
+      <p>Provide a clean, searchable, and filterable listing of internships and early-career roles that candidates can explore with minimal friction.</p>
+    </div>
+    <div class="feature-card">
+      <span class="feature-card-icon">📝</span>
+      <h4>Streamlined Applications</h4>
+      <p>Guide candidates through a 3-step application flow with resume upload, cover notes, and submission confirmation.</p>
+    </div>
+    <div class="feature-card">
+      <span class="feature-card-icon">🏢</span>
+      <h4>Employer Workspace</h4>
+      <p>Give authenticated administrators a secure dashboard to manage listings and monitor incoming applications in real time.</p>
+    </div>
+    <div class="feature-card">
+      <span class="feature-card-icon">📱</span>
+      <h4>Mobile-First Responsive UI</h4>
+      <p>Ensure the entire platform is fully usable on smartphones and tablets with an adaptive, touch-friendly interface.</p>
+    </div>
+  </div>
+
+  <h2 class="subsection">Live Project URLs</h2>
+  <p>
+    The project is deployed and publicly accessible:<br/>
+    <strong>Frontend:</strong> <span class="code">https://launchpad-job-portal-1.onrender.com</span><br/>
+    <strong>Backend API:</strong> <span class="code">https://launchpad-job-portal.onrender.com/api</span>
+  </p>
+
+  <div class="page-footer">
+    <span>LaunchPad &mdash; ATG Technologies Internship Project</span>
+    <span>Keyur Patil &mdash; November 2026</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     PAGE 3 — FEATURES
+     ══════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <span class="doc-title">LaunchPad &mdash; Project Report</span>
+    <span class="page-num">Page 3</span>
+  </div>
+
+  <div class="section-label"><span class="section-num">02</span> Features &amp; Functionality</div>
+  <h1 class="section-title">What the<br/><em>platform does.</em></h1>
+
+  <h2 class="subsection">For Candidates</h2>
+
+  <div class="step-list">
+    <div class="step-item">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <h4>Search &amp; Filter Opportunities</h4>
+        <p>Search by role title, company name, or keyword. Filter by domain (Engineering, Design, Marketing, Data &amp; Analytics, Content) and job type (Internship, Full-time, Part-time). Results update instantly.</p>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <h4>Featured Opportunity Spotlight</h4>
+        <p>A highlighted "Opportunity of the Week" card with editorial-style design, company logo, metadata, and a direct call-to-action for high-intent candidates.</p>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <h4>Editorial Role Detail Pages</h4>
+        <p>Each listing has a full-page editorial profile including: role description, company story, learning outcomes, 30-day onboarding roadmap, culture values, perks, and a sticky application sidebar.</p>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">4</div>
+      <div class="step-content">
+        <h4>Multi-Step Application Form</h4>
+        <p>A guided 3-step application: (1) Profile — name &amp; email, (2) Resume — upload PDF/DOC or paste a link, add cover note, (3) Review &amp; submit. Applications are submitted via authenticated API and stored in MongoDB.</p>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">5</div>
+      <div class="step-content">
+        <h4>User Accounts</h4>
+        <p>Candidates can register and log in. JWT tokens are stored in localStorage and sent with API requests to authenticate submissions.</p>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="subsection">For Employers &amp; Administrators</h2>
+
+  <div class="step-list">
+    <div class="step-item">
+      <div class="step-num">A</div>
+      <div class="step-content">
+        <h4>Protected Admin Workspace</h4>
+        <p>Admins sign in with configured credentials. The admin route is protected server-side by JWT middleware; unauthenticated requests are rejected with a 401 response.</p>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">B</div>
+      <div class="step-content">
+        <h4>Opportunity Management (CRUD)</h4>
+        <p>Create new opportunities via a modal form. Edit existing listings inline. Delete listings with confirmation. All changes persist to MongoDB instantly.</p>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">C</div>
+      <div class="step-content">
+        <h4>Application Inbox</h4>
+        <p>View all submitted applications in a table: applicant name, email, the opportunity applied to, application status, and submission date.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>LaunchPad &mdash; ATG Technologies Internship Project</span>
+    <span>Keyur Patil &mdash; November 2026</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     PAGE 4 — TECH STACK & ARCHITECTURE
+     ══════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <span class="doc-title">LaunchPad &mdash; Project Report</span>
+    <span class="page-num">Page 4</span>
+  </div>
+
+  <div class="section-label"><span class="section-num">03</span> Technology Stack &amp; Architecture</div>
+  <h1 class="section-title">How it<br/><em>is built.</em></h1>
+
+  <table class="tech-table">
+    <thead>
+      <tr>
+        <th>Layer</th>
+        <th>Technology</th>
+        <th>Purpose</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Frontend Framework</td><td>React 18 + Vite</td><td>Component-based SPA with fast HMR dev server and optimised production builds</td></tr>
+      <tr><td>UI Icons</td><td>Lucide React</td><td>Consistent, lightweight icon set used throughout the interface</td></tr>
+      <tr><td>Styling</td><td>Custom CSS (CSS Variables)</td><td>Responsive layouts using media queries; no CSS framework dependency</td></tr>
+      <tr><td>Backend Runtime</td><td>Node.js 20 + Express</td><td>REST API server handling auth, opportunities, and application routes</td></tr>
+      <tr><td>Database</td><td>MongoDB + Mongoose</td><td>Document store for opportunities, applications, and users</td></tr>
+      <tr><td>Authentication</td><td>JWT + bcryptjs</td><td>Stateless token auth; passwords hashed with bcrypt before storage</td></tr>
+      <tr><td>File Upload</td><td>Multer</td><td>Handles multipart form data for resume file uploads</td></tr>
+      <tr><td>Email (optional)</td><td>Nodemailer</td><td>Application notification emails via SMTP</td></tr>
+      <tr><td>Dev Tooling</td><td>Nodemon + Concurrently</td><td>Auto-restart server; run frontend and backend in parallel</td></tr>
+      <tr><td>Hosting</td><td>Render</td><td>Frontend static site + backend web service on Render</td></tr>
+      <tr><td>Database Hosting</td><td>MongoDB Atlas</td><td>Cloud-managed MongoDB cluster</td></tr>
+      <tr><td>Source Control</td><td>Git + GitHub</td><td>Version control; Render auto-deploys on push to main branch</td></tr>
+    </tbody>
+  </table>
+
+  <h2 class="subsection">System Architecture</h2>
+
+  <div class="arch-box">
+    <div class="arch-row">
+      <div class="arch-node highlight">
+        <span class="node-title">React Frontend</span>
+        <span class="node-sub">Vite &middot; Lucide &middot; CSS</span>
+      </div>
+    </div>
+    <div class="arch-row">
+      <div class="arch-arrow">
+        <span>&#8595;</span>
+        <small>REST API / JSON</small>
+      </div>
+    </div>
+    <div class="arch-row">
+      <div class="arch-node highlight">
+        <span class="node-title">Express API Server</span>
+        <span class="node-sub">Node.js &middot; JWT Auth &middot; Multer</span>
+      </div>
+    </div>
+    <div class="arch-row">
+      <div class="arch-arrow">
+        <span>&#8595;</span>
+        <small>Mongoose ODM</small>
+      </div>
+    </div>
+    <div class="arch-row">
+      <div class="arch-node highlight">
+        <span class="node-title">MongoDB Atlas</span>
+        <span class="node-sub">Opportunities &middot; Applications &middot; Users</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>LaunchPad &mdash; ATG Technologies Internship Project</span>
+    <span>Keyur Patil &mdash; November 2026</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     PAGE 5 — PROJECT STRUCTURE & API
+     ══════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <span class="doc-title">LaunchPad &mdash; Project Report</span>
+    <span class="page-num">Page 5</span>
+  </div>
+
+  <div class="section-label"><span class="section-num">04</span> Project Structure &amp; API Reference</div>
+  <h1 class="section-title">Code &amp;<br/><em>endpoints.</em></h1>
+
+  <h2 class="subsection">Folder Structure</h2>
+  <div class="tree">
+    <div><span class="dir">launchpad-job-portal/</span></div>
+    <div>&nbsp;&nbsp;├── <span class="dir">client/</span> &nbsp;<span class="note"># React + Vite frontend</span></div>
+    <div>&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├── <span class="dir">src/</span></div>
+    <div>&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├── <span class="file">main.jsx</span> &nbsp;<span class="note"># All React components</span></div>
+    <div>&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;└── <span class="file">styles.css</span> &nbsp;<span class="note"># Responsive styles</span></div>
+    <div>&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;└── <span class="file">index.html</span></div>
+    <div>&nbsp;&nbsp;├── <span class="dir">server/</span> &nbsp;<span class="note"># Node.js + Express backend</span></div>
+    <div>&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├── <span class="dir">src/</span></div>
+    <div>&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├── <span class="file">index.js</span> &nbsp;<span class="note"># Express app + all routes</span></div>
+    <div>&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;└── <span class="file">seed.js</span> &nbsp;<span class="note"># Database seeder</span></div>
+    <div>&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├── <span class="dir">models/</span></div>
+    <div>&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├── <span class="file">Opportunity.js</span></div>
+    <div>&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├── <span class="file">Application.js</span></div>
+    <div>&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;└── <span class="file">User.js</span></div>
+    <div>&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;└── <span class="file">.env.example</span></div>
+    <div>&nbsp;&nbsp;├── <span class="file">package.json</span> &nbsp;<span class="note"># Root scripts</span></div>
+    <div>&nbsp;&nbsp;└── <span class="file">README.md</span></div>
+  </div>
+
+  <h2 class="subsection">API Endpoints</h2>
+
+  <h3 class="mini">Authentication — /api/auth</h3>
+  <table class="api-table">
+    <thead><tr><th>Method</th><th>Endpoint</th><th>Auth</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr><td><span class="method post">POST</span></td><td><span class="code">/auth/register</span></td><td>None</td><td>Register a new user account</td></tr>
+      <tr><td><span class="method post">POST</span></td><td><span class="code">/auth/login</span></td><td>None</td><td>Login — returns a signed JWT token</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="mini">Opportunities — /api/opportunities</h3>
+  <table class="api-table">
+    <thead><tr><th>Method</th><th>Endpoint</th><th>Auth</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr><td><span class="method get">GET</span></td><td><span class="code">/opportunities</span></td><td>None</td><td>List all opportunities</td></tr>
+      <tr><td><span class="method post">POST</span></td><td><span class="code">/opportunities</span></td><td>Admin JWT</td><td>Create a new opportunity listing</td></tr>
+      <tr><td><span class="method put">PUT</span></td><td><span class="code">/opportunities/:id</span></td><td>Admin JWT</td><td>Update an existing opportunity</td></tr>
+      <tr><td><span class="method delete">DEL</span></td><td><span class="code">/opportunities/:id</span></td><td>Admin JWT</td><td>Delete an opportunity</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="mini">Applications — /api/applications</h3>
+  <table class="api-table">
+    <thead><tr><th>Method</th><th>Endpoint</th><th>Auth</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr><td><span class="method post">POST</span></td><td><span class="code">/applications</span></td><td>User JWT</td><td>Submit an application (multipart/form-data)</td></tr>
+      <tr><td><span class="method get">GET</span></td><td><span class="code">/applications</span></td><td>Admin JWT</td><td>List all submitted applications</td></tr>
+    </tbody>
+  </table>
+
+  <div class="page-footer">
+    <span>LaunchPad &mdash; ATG Technologies Internship Project</span>
+    <span>Keyur Patil &mdash; November 2026</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     PAGE 6 — SCREENSHOTS (PLACEHOLDER)
+     ══════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <span class="doc-title">LaunchPad &mdash; Project Report</span>
+    <span class="page-num">Page 6</span>
+  </div>
+
+  <div class="section-label"><span class="section-num">05</span> UI Screenshots &mdash; Candidate Experience</div>
+  <h1 class="section-title">The<br/><em>interface.</em></h1>
+
+  <h2 class="subsection">Home Page — Opportunity Discovery</h2>
+  <div class="screenshot-placeholder ph-lg">
+    <span class="ph-icon">🖼️</span>
+    <span class="ph-label">Screenshot — Home Page</span>
+    <span class="ph-desc">Shows the hero search bar, type filter tabs, featured spotlight card, and opportunity grid</span>
+  </div>
+
+  <h2 class="subsection">Featured Opportunity Spotlight</h2>
+  <div class="screenshot-placeholder ph-md">
+    <span class="ph-icon">🌟</span>
+    <span class="ph-label">Screenshot — Spotlight Section</span>
+    <span class="ph-desc">Featured "Opportunity of the Week" card with editorial design and animated elements</span>
+  </div>
+
+  <div class="page-footer">
+    <span>LaunchPad &mdash; ATG Technologies Internship Project</span>
+    <span>Keyur Patil &mdash; November 2026</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     PAGE 7 — SCREENSHOTS (PLACEHOLDER) 2
+     ══════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <span class="doc-title">LaunchPad &mdash; Project Report</span>
+    <span class="page-num">Page 7</span>
+  </div>
+
+  <div class="section-label"><span class="section-num">05</span> UI Screenshots &mdash; Role Details &amp; Application</div>
+
+  <h2 class="subsection">Role Detail Page (Editorial Layout)</h2>
+  <div class="screenshot-placeholder ph-lg">
+    <span class="ph-icon">📄</span>
+    <span class="ph-label">Screenshot — Role Detail Page</span>
+    <span class="ph-desc">Editorial role profile with company story, 30-day roadmap, learning grid, culture values, and sticky apply sidebar</span>
+  </div>
+
+  <h2 class="subsection">Multi-Step Application Form</h2>
+  <div class="screenshot-placeholder ph-md">
+    <span class="ph-icon">📝</span>
+    <span class="ph-label">Screenshot — Application Form (3-step)</span>
+    <span class="ph-desc">Step 1: Profile &nbsp;|&nbsp; Step 2: Resume &amp; cover note &nbsp;|&nbsp; Step 3: Review &amp; submit</span>
+  </div>
+
+  <div class="page-footer">
+    <span>LaunchPad &mdash; ATG Technologies Internship Project</span>
+    <span>Keyur Patil &mdash; November 2026</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     PAGE 8 — SCREENSHOTS (PLACEHOLDER) 3
+     ══════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <span class="doc-title">LaunchPad &mdash; Project Report</span>
+    <span class="page-num">Page 8</span>
+  </div>
+
+  <div class="section-label"><span class="section-num">05</span> UI Screenshots &mdash; Auth &amp; Admin</div>
+
+  <h2 class="subsection">User Login &amp; Registration</h2>
+  <div class="screenshot-placeholder ph-md">
+    <span class="ph-icon">👤</span>
+    <span class="ph-label">Screenshot — User Login / Register</span>
+    <span class="ph-desc">JWT-based login form for candidates with toggle between Sign In and Create Account</span>
+  </div>
+
+  <h2 class="subsection">Admin Workspace — Opportunity Management</h2>
+  <div class="screenshot-placeholder ph-md">
+    <span class="ph-icon">🏢</span>
+    <span class="ph-label">Screenshot — Admin Dashboard</span>
+    <span class="ph-desc">Protected employer workspace with opportunity table, Add / Edit / Delete controls, and stats summary</span>
+  </div>
+
+  <h2 class="subsection">Admin Application Inbox</h2>
+  <div class="screenshot-placeholder ph-sm">
+    <span class="ph-icon">📥</span>
+    <span class="ph-label">Screenshot — Application Inbox</span>
+    <span class="ph-desc">Table of submitted applications with applicant name, email, opportunity, status, and date</span>
+  </div>
+
+  <div class="page-footer">
+    <span>LaunchPad &mdash; ATG Technologies Internship Project</span>
+    <span>Keyur Patil &mdash; November 2026</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     PAGE 9 — SCREENSHOTS (PLACEHOLDER) 4 — MOBILE
+     ══════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <span class="doc-title">LaunchPad &mdash; Project Report</span>
+    <span class="page-num">Page 9</span>
+  </div>
+
+  <div class="section-label"><span class="section-num">05</span> UI Screenshots &mdash; Mobile Responsive UI</div>
+
+  <p>
+    The platform is fully responsive across smartphones and tablets.
+    A hamburger navigation drawer, single-column layouts, and fluid input controls
+    ensure the complete candidate and admin experience works on mobile devices.
+  </p>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin: 20px 0;">
+    <div class="screenshot-placeholder" style="height: 300px;">
+      <span class="ph-icon">📱</span>
+      <span class="ph-label">Mobile Home</span>
+    </div>
+    <div class="screenshot-placeholder" style="height: 300px;">
+      <span class="ph-icon">📱</span>
+      <span class="ph-label">Mobile Nav Menu</span>
+    </div>
+    <div class="screenshot-placeholder" style="height: 300px;">
+      <span class="ph-icon">📱</span>
+      <span class="ph-label">Mobile Detail</span>
+    </div>
+  </div>
+
+  <div class="callout">
+    <p>💡 <strong>Mobile features added:</strong> Viewport meta tag, hamburger drawer navigation with slide-down animation, single-column card grid, full-width search bar, responsive hero typography, touch-friendly buttons, and mobile-optimised form layouts.</p>
+  </div>
+
+  <div class="page-footer">
+    <span>LaunchPad &mdash; ATG Technologies Internship Project</span>
+    <span>Keyur Patil &mdash; November 2026</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     PAGE 10 — SETUP & DEPLOYMENT
+     ══════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <span class="doc-title">LaunchPad &mdash; Project Report</span>
+    <span class="page-num">Page 10</span>
+  </div>
+
+  <div class="section-label"><span class="section-num">06</span> Setup &amp; Deployment</div>
+  <h1 class="section-title">Running the<br/><em>project.</em></h1>
+
+  <h2 class="subsection">Local Development Setup</h2>
+
+  <div class="step-list">
+    <div class="step-item">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <h4>Clone the repository</h4>
+        <p>git clone https://github.com/keyurpatil2006-sudo/launchpad-job-portal.git</p>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <h4>Configure environment variables</h4>
+        <p>Copy server/.env.example to server/.env and fill in your MongoDB URI, JWT secret, and admin credentials.</p>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <h4>Install all dependencies</h4>
+        <p>npm run install:all — installs packages for root, client, and server in one command.</p>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">4</div>
+      <div class="step-content">
+        <h4>Seed the database (optional)</h4>
+        <p>npm run seed — loads initial opportunity data into MongoDB.</p>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">5</div>
+      <div class="step-content">
+        <h4>Start development servers</h4>
+        <p>npm run dev — runs the frontend on port 5173 and the API on port 5000 concurrently.</p>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="subsection">Environment Variables</h2>
+  <div class="env-block">
+    <div><span class="env-comment"># server/.env</span></div>
+    <div><span class="env-key">PORT</span>=<span class="env-val">5000</span></div>
+    <div><span class="env-key">MONGO_URI</span>=<span class="env-val">mongodb://127.0.0.1:27017/launchpad</span></div>
+    <div><span class="env-key">JWT_SECRET</span>=<span class="env-val">replace-with-a-long-random-secret</span></div>
+    <div><span class="env-key">ADMIN_EMAIL</span>=<span class="env-val">admin@example.com</span></div>
+    <div><span class="env-key">ADMIN_PASSWORD</span>=<span class="env-val">change-me-now</span></div>
+    <div>&nbsp;</div>
+    <div><span class="env-comment"># client (Render env var)</span></div>
+    <div><span class="env-key">VITE_API_URL</span>=<span class="env-val">https://launchpad-job-portal.onrender.com/api</span></div>
+  </div>
+
+  <div class="callout warn">
+    <p>⚠️ <strong>Security note:</strong> Never commit your .env file or real credentials to version control. Add server/.env to .gitignore.</p>
+  </div>
+
+  <h2 class="subsection">Render Deployment</h2>
+
+  <div class="deploy-section-head">Backend — Web Service</div>
+  <table class="deploy-table">
+    <tr><td>Root directory</td><td><span class="code">server</span></td></tr>
+    <tr><td>Build command</td><td><span class="code">npm install</span></td></tr>
+    <tr><td>Start command</td><td><span class="code">npm start</span></td></tr>
+    <tr><td>Environment vars</td><td>MONGO_URI, JWT_SECRET, ADMIN_EMAIL, ADMIN_PASSWORD</td></tr>
+  </table>
+
+  <div class="deploy-section-head" style="margin-top: 14px;">Frontend — Static Site</div>
+  <table class="deploy-table">
+    <tr><td>Root directory</td><td><span class="code">client</span></td></tr>
+    <tr><td>Build command</td><td><span class="code">npm install &amp;&amp; npm run build</span></td></tr>
+    <tr><td>Publish directory</td><td><span class="code">dist</span></td></tr>
+    <tr><td>Environment vars</td><td>VITE_API_URL</td></tr>
+  </table>
+
+  <div class="page-footer">
+    <span>LaunchPad &mdash; ATG Technologies Internship Project</span>
+    <span>Keyur Patil &mdash; November 2026</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     PAGE 11 — FUTURE IMPROVEMENTS & CONCLUSION
+     ══════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <span class="doc-title">LaunchPad &mdash; Project Report</span>
+    <span class="page-num">Page 11</span>
+  </div>
+
+  <div class="section-label"><span class="section-num">07</span> Future Improvements</div>
+  <h1 class="section-title">What comes<br/><em>next.</em></h1>
+
+  <div class="checklist">
+    <div class="checklist-item"><div class="check-box"></div><span>Pagination and infinite scroll for the opportunity listing grid</span></div>
+    <div class="checklist-item"><div class="check-box"></div><span>Richer search filters: city, work mode (remote / hybrid / on-site), salary range</span></div>
+    <div class="checklist-item"><div class="check-box"></div><span>Candidate profiles with saved and bookmarked opportunities</span></div>
+    <div class="checklist-item"><div class="check-box"></div><span>Persistent file storage for uploaded resumes using AWS S3 or Cloudinary</span></div>
+    <div class="checklist-item"><div class="check-box"></div><span>Email confirmation sent to candidates on successful application submission</span></div>
+    <div class="checklist-item"><div class="check-box"></div><span>Automated integration tests in CI pipeline (GitHub Actions)</span></div>
+    <div class="checklist-item"><div class="check-box"></div><span>Admin analytics dashboard — applications per listing, conversion rates</span></div>
+    <div class="checklist-item"><div class="check-box"></div><span>Application status tracking for candidates (Received → Under Review → Decision)</span></div>
+  </div>
+
+  <div class="section-label" style="margin-top: 44px;"><span class="section-num">08</span> Conclusion</div>
+  <h1 class="section-title">What was<br/><em>achieved.</em></h1>
+
+  <p>
+    LaunchPad successfully demonstrates a complete, production-deployed MERN stack application
+    covering the full development lifecycle — from local development and database modelling
+    through REST API design, JWT authentication, file handling, responsive UI development,
+    and cloud deployment.
+  </p>
+
+  <p>
+    The project prioritises user experience with an editorial design language, smooth animations,
+    and a fully mobile-responsive interface. The employer admin workspace provides real-world
+    CRUD functionality protected by token-based authentication. All changes are version-controlled
+    on GitHub and auto-deployed to Render on every push to the main branch.
+  </p>
+
+  <p>
+    This internship project at ATG Technologies provided hands-on experience with every layer
+    of modern web application development — reinforcing skills in React, Node.js, MongoDB,
+    REST API design, responsive CSS, cloud deployment, and collaborative version control.
+  </p>
+
+  <div style="margin-top: 44px; border-top: 2px solid var(--green); padding-top: 24px;">
+    <p style="font-family: 'Lexend Deca', sans-serif; font-size: 9pt; color: var(--muted); margin: 0;">
+      <strong style="font-family: 'Lexend', sans-serif; font-size: 10pt; color: var(--ink);">Keyur Patil</strong><br/>
+      Intern &mdash; ATG Technologies &nbsp;&middot;&nbsp; November 2026<br/>
+      github.com/keyurpatil2006-sudo/launchpad-job-portal
+    </p>
+  </div>
+
+  <div class="page-footer">
+    <span>LaunchPad &mdash; ATG Technologies Internship Project</span>
+    <span>Keyur Patil &mdash; November 2026</span>
+  </div>
+</div>
+
+</body>
+</html>
